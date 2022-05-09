@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const path = require('path');
 
 const Thing = required('./models/Thing');
-const stuffRoutes = require('./routes/stuff');
+const stuffRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://mhb_LA:MooGo2022@cluster0.q3ytr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
