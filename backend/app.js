@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const path = require('path');
 
-const Thing = require('./models/Thing');
-const stuffRoutes = require('./routes/sauce');
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
 mongoose.connect('mongodb+srv://mhb_LA:MooGo2022@cluster0.q3ytr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
@@ -26,7 +25,7 @@ app.use((req, res, next) => {
 
   app.use('/images', express.static(path.join(__dirname, 'images')));
 
- app.use('/api/stuff', sauceRoutes);
+ app.use('/api/sauce', sauceRoutes);
  app.use('/api/auth', userRoutes);
 
 module.exports = app;
