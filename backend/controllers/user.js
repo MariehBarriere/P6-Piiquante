@@ -4,27 +4,13 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 
 //enregistrer et lire new user dans middleware
-const user = require('../models/User')
+const User = require('../models/User')
 
 //signup pour création de news users dans database à partir de l'inscript°frontend
 exports.signup = (req, res, next) => {
+  console.log(req.body.password);
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
-        const user = new User({
-          email: req.body.email,
-          password: hash
-        });
-        user.save()
-          .then(() => res.status(201).json({ message: 'Utilisateur créé !' }))
-          .catch(error => res.status(400).json({ error }));
-      })
-      .catch(error => res.status(500).json({ error }));
-  };exports.signup = (req, res, next) => {
-      //fonction pour crypter le paswd 10tours
-    bcrypt.hash(req.body.password, 10)
-    //méthode asynchrone then catch pour crypter hash
-      .then(hash => {
-          //on l'enregistre ds un new user avec mongoose
         const user = new User({
           email: req.body.email,
           password: hash
