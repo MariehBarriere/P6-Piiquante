@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 const path = require('path');
 
 const sauceRoutes = require('./routes/sauce');
@@ -13,6 +14,7 @@ mongoose.connect('mongodb+srv://mhb_LA:MooGo2022@cluster0.tzkdt.mongodb.net/myFi
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
+app.use(helmet());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,7 +27,7 @@ app.use((req, res, next) => {
 
   app.use('/images', express.static(path.join(__dirname, 'images')));
 
- app.use('/api/sauce', sauceRoutes);
+ app.use('/api/sauces', sauceRoutes);
  app.use('/api/auth', userRoutes);
 
 module.exports = app;
