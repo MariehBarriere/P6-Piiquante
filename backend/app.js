@@ -1,4 +1,4 @@
-//importer express pour créer plus facilement le server
+//importer express pour simplifier la création de l'API
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
