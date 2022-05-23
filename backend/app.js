@@ -15,7 +15,9 @@ mongoose.connect('mongodb+srv://mhb_LA:MooGo2022@cluster0.tzkdt.mongodb.net/myFi
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
-app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({
+  policy: 'cross-origin'
+}));
 
 //attribuer un middleware à une route spécifique de votre application avec app.use
 app.use((req, res, next) => {
