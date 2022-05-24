@@ -5,9 +5,11 @@ const mongoose = require('mongoose');
 const helmet = require('helmet');
 const path = require('path');
 
+//importer les routeurs
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
+//connecter l'app avec mongoose qui gère la base de donnée MongoDB
 mongoose.connect('mongodb+srv://mhb_LA:MooGo2022@cluster0.tzkdt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -20,6 +22,7 @@ app.use(helmet.crossOriginResourcePolicy({
 }));
 
 //attribuer un middleware à une route spécifique de votre application avec app.use
+//Gestion des CORS
 app.use((req, res, next) => {
   //accéder à notre API depuis n'importe quelle origine ( '*' )
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -33,11 +36,11 @@ app.use((req, res, next) => {
   //body-parser est un morceau de middleware express qui lit l'entrée d'un formulaire et le stocke en js
   app.use(bodyParser.json());
 
-  app.use('/images', express.static(path.join(__dirname, 'images')));
-
+ //Routes
+ app.use('/images', express.static(path.join(__dirname, 'images')));
  app.use('/api/sauces', sauceRoutes);
  app.use('/api/auth', userRoutes);
 
- //exporter notre application 'app'
+ //exporter notre application 
 module.exports = app;
 
