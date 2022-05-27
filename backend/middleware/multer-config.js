@@ -25,6 +25,6 @@ const storage = multer.diskStorage({
   }
 });
 
-/* exportr le middleware multer configuré en passant l'objet storage, 
+/* exporter le middleware multer configuré en passant l'objet storage, 
 avec single pour un fichier image unique */
 module.exports = multer({storage}).single('image');
